@@ -1,0 +1,11 @@
+camelot_py==1.0.0 # подошел лучше всего для парсинга pdf файлов с интенсивностями
+deap==1.4.2 # для генетического алгоритма
+fastapi==0.115.11
+matplotlib==3.10.1
+numpy==2.2.4
+pandas==2.2.3
+pydantic==2.10.6
+starlette==0.46.1
+uvicorn==0.34.0
+Jinja2==3.1.2
+python-multipart==0.0.6

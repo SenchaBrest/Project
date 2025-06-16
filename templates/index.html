@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Подбор оптимальных границ для карт времени</title>
+    <link rel="stylesheet" href="static/css/styles.css">
+</head>
+<body>
+    <h1>Подбор оптимальных границ для карт времени</h1>
+    <div style="display: flex; flex-direction: column; gap: 10px;">
+        <div style="display: flex; justify-content: space-between; align-items: center;">
+            <h2>Шаг 1: Выберите и загрузите файл</h2>
+            <button id="resetStep2" class="hidden" onclick="resetManySteps(1)">Вернуться к шагу 1</button>
+        </div>
+        <div id="step2" class="step inactive">
+            <form id="uploadForm" enctype="multipart/form-data">
+                <label for="fileInput" class="custom-file-upload">Загрузить документ</label>
+                <span id="fileName" class="file-name"></span>
+                <input type="file" id="fileInput" name="file" accept=".csv,.pdf" />
+            </form>
+            <div id="uploadBtn" class="side-button inactive" onclick="triggerUpload()"><span>&#10003;</span></div>
+            <div id="uploadStatus"></div>
+        </div>
+
+        <div style="display: flex; justify-content: space-between; align-items: center;">
+            <h2>Шаг 2: Обработка</h2>
+        </div>
+        <div id="step3" class="step inactive">
+            <button id="processBtn">Начать обработку</button>
+            <div id="processingStatus"></div>
+            <div id="processingError" class="error hidden"></div>
+            <button id="downloadBtn" class="hidden">Скачать файл csv</button>
+        </div>
+
+        <div style="display: flex; justify-content: space-between; align-items: center;">
+            <h2>Шаг 3: Установите необходимые параметры</h2>
+            <button id="resetStep4" class="hidden" onclick="resetManySteps(3)">Вернуться к шагу 3</button>
+        </div>
+        <div id="step4" class="step inactive">
+            <form id="paramsForm">
+                <div>
+                    <input type="checkbox" id="option1" name="option1">
+                    <label for="option1">Пн</label>
+                    <input type="checkbox" id="option2" name="option2">
+                    <label for="option2">Вт</label>
+                    <input type="checkbox" id="option3" name="option3">
+                    <label for="option3">Ср</label>
+                    <input type="checkbox" id="option4" name="option4">
+                    <label for="option4">Чт</label>
+                    <input type="checkbox" id="option5" name="option5">
+                    <label for="option5">Пт</label>
+                    <input type="checkbox" id="option6" name="option6">
+                    <label for="option6">Сб</label>
+                    <input type="checkbox" id="option7" name="option7">
+                    <label for="option7">Вс</label>
+                </div>
+                <button type="button" id="toggleHiddenParamsBtn" onclick="toggleHiddenParams()">Показать дополнительные параметры</button>
+                <div id="hiddenParams" style="display: none; margin-top: 10px;">
+                    <div>
+                        <label for="partsCount">Количество частей для разбиения:</label>
+                        <input type="number" id="partsCount" name="partsCount" value="13" min="3" max="18">
+                        
+                    </div>
+                    <div>
+                        <label for="threshold">Порог для слияния частей (%):</label>
+                        <input type="number" id="threshold" name="threshold" value="10" min="0" max="100" step="5">
+                    </div>                    
+                </div>
+            </form>
+            <div id="paramsSubmitBtn" class="side-button" onclick="triggerParamsSubmit()"><span>&#10003;</span></div>
+        </div>
+        <div style="display: flex; justify-content: space-between; align-items: center;">
+            <h2>Шаг 4: Анализ</h2>
+        </div>
+        <div id="step5" class="step inactive">
+            <button id="analyzeBtn">Запустить алгоритм</button>
+            <div id="analysisStatus"></div>
+            <div id="analysisError" class="error hidden"></div>
+            <div id="analysisResults"></div>
+        </div>        
+    </div>
+
+    <script src="static\js\script.js" defer></script>
+</body>
+</html>
